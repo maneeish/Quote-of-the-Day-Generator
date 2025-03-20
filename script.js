@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-   
+    // DOM Elements
     const quoteContainer = document.getElementById("quote-container")
     const quoteCard = document.getElementById("quote-card")
     const quoteText = document.getElementById("quote")
@@ -13,23 +13,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const toast = document.getElementById("toast")
     const toastMessage = document.getElementById("toast-message")
   
-    
+    // Current quote data
     let currentQuote = ""
     let currentAuthor = ""
   
-    
+    // Show loading
     function showLoading() {
       loading.classList.remove("hidden")
       quoteContent.classList.add("hidden")
     }
   
-   
+    // Hide loading
     function hideLoading() {
       loading.classList.add("hidden")
       quoteContent.classList.remove("hidden")
     }
   
-    
+    // Show toast message
     function showToast(message, duration = 3000) {
       toastMessage.textContent = message
       toast.classList.remove("hidden")
@@ -43,13 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }, duration)
     }
   
-    
+    // Set random background image
     async function setRandomBackground() {
       try {
         const timestamp = new Date().getTime()
         const imageUrl = `https://source.unsplash.com/random/1920x1080/?nature,landscape&t=${timestamp}`
   
-        
+        // Create a new image to preload
         const img = new Image()
         img.onload = () => {
           document.body.style.backgroundImage = `url(${imageUrl})`
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   
-  
+    // Get quote from API
     async function getQuote() {
       showLoading()
   
@@ -70,11 +70,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json()
   
         if (data.success && data.data) {
-          
+          // Update current quote data
           currentQuote = data.data.content
           currentAuthor = data.data.author
   
-          
+          // Update DOM
           quoteText.textContent = currentQuote
           authorText.textContent = currentAuthor
           hideLoading()
@@ -89,10 +89,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   
-   
+    // Copy quote to clipboard
     function copyQuote() {
-        const textToCopy = `${currentQuote} - ${currentAuthor}`;
-
+      const textToCopy = `"${currentQuote}" - ${currentAuthor}`
   
       navigator.clipboard
         .writeText(textToCopy)
@@ -104,18 +103,17 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
   
-   
+    // Tweet quote
     function tweetQuote() {
-        const tweetText = encodeURIComponent(`${currentQuote} - ${currentAuthor}`);
-
+      const tweetText = encodeURIComponent(`"${currentQuote}" - ${currentAuthor}`)
       const twitterUrl = `https://twitter.com/intent/tweet?text=${tweetText}`
       window.open(twitterUrl, "_blank")
     }
   
-
+    // Export quote as image
     async function exportQuote() {
       try {
-   
+        // Check if html2canvas is available
         if (typeof html2canvas === "undefined") {
           showToast("html2canvas is not available. Please ensure it is properly loaded.")
           return
@@ -124,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const canvas = await html2canvas(quoteCard, {
           backgroundColor: null,
           useCORS: true,
-          scale: 2, 
+          scale: 2, // Higher resolution
         })
   
         const image = canvas.toDataURL("image/png")
@@ -140,13 +138,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   
-    
+    // Event listeners
     newQuoteBtn.addEventListener("click", getQuote)
     copyBtn.addEventListener("click", copyQuote)
     tweetBtn.addEventListener("click", tweetQuote)
     exportBtn.addEventListener("click", exportQuote)
   
-    
+    // On load
     setRandomBackground()
     getQuote()
   })
