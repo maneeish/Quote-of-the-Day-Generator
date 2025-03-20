@@ -12,7 +12,8 @@ The **Quote of the Day Generator** is a simple web application that fetches and 
 - 🌄 Dynamic background image updates
 - 🌀 Smooth UI animations and loading effects
 
-## Screenshots
+## Screenshots<img width="954" alt="quote" src="https://github.com/user-attachments/assets/61aad0ce-27ac-41da-bb79-2e7622999765" />
+
 ### Main Interface
 
 
