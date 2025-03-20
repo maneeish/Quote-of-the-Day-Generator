@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quote of the Day</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="quote-container" id="quote-container">
+      <div class="quote-card" id="quote-card">
+        <div id="loading" class="loading">
+          <div class="spinner"></div>
+          <p>Loading your quote...</p>
+        </div>
+        
+        <div id="quote-content" class="quote-content hidden">
+          <p id="quote" class="quote"></p>
+          <p id="author" class="author"></p>
+        </div>
+      </div>
+      
+      <div class="buttons">
+        <button id="new-quote" class="btn primary">
+          <i class="fas fa-sync-alt"></i> New Quote
+        </button>
+        <button id="copy" class="btn">
+          <i class="fas fa-copy"></i> Copy
+        </button>
+        <button id="tweet" class="btn">
+          <i class="fab fa-twitter"></i> Share on Twitter
+        </button>
+        <button id="export" class="btn">
+          <i class="fas fa-download"></i> Export
+        </button>
+      </div>
+    </div>
+    
+    <div id="toast" class="toast hidden">
+      <p id="toast-message"></p>
+    </div>
+  </div>
+  
+  <footer>
+    <p>Developed By Manish | Quote of the Day</p>
+  </footer>
+  
+  <script src="script.js"></script>
+</body>
+</html>
+
